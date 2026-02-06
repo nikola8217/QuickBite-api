@@ -1,6 +1,6 @@
 import { IUserRepository } from "./ports/IUserRepository";
 import { UserDto } from "../dtos/UserDto";
-import { EmailAlreadyTakenError } from "../errors/EmailAlreadyTaken";
+import { EmailAlreadyTakenError } from "@quickbiteapp/shared";
 import { IPasswordHasher } from "./ports/IPasswordHasher";
 import { User } from "../entities/User";
 import { randomUUID } from "crypto";

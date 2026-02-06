@@ -1,6 +1,6 @@
-import { RequiredFieldError } from "../../errors/RequiredFieldError";
-import { InvalidEmailError } from "../../errors/InvalidEmailError";
-import { BadRequestError } from "../../errors/BadRequestError";
+import { RequiredFieldError } from "@quickbiteapp/shared";
+import { InvalidEmailError } from "@quickbiteapp/shared";
+import { BadRequestError } from "@quickbiteapp/shared";
 import { Role } from "../enums/Role";
 import { Status } from "../enums/Status";
 
