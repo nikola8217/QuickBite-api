@@ -10,3 +10,5 @@ export * from './errors/UserNotActiveError';
 
 export * from './middlewares/ErrorHandler';
 export * from './middlewares/ValidateRequest';
+
+export * from './events/UserCreated';
