@@ -5,6 +5,8 @@ export * from './errors/InvalidEmailError';
 export * from './errors/NotFoundError';
 export * from './errors/RequestValidationError';
 export * from './errors/RequiredFieldError';
+export * from './errors/InvalidCredentionalsError';
+export * from './errors/UserNotActiveError';
 
 export * from './middlewares/ErrorHandler';
 export * from './middlewares/ValidateRequest';
