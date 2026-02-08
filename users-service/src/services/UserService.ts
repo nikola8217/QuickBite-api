@@ -9,7 +9,7 @@ import { UserResponse } from "../responses/UserResponse";
 export class UserService {
     constructor(private userRepository: IUserRepository, private passwordHasher: IPasswordHasher) {}
 
-    async createUser(dto: UserDto) : Promise<UserResponse> {
+    async createUser(dto: UserDto): Promise<UserResponse> {
         const emailIsTaken = await this.userRepository.getUserByEmail(dto.email);
 
         if (emailIsTaken) throw new EmailAlreadyTakenError();

@@ -4,6 +4,7 @@ import cors from 'cors';
 import { connectDB } from './config/MongoDB';
 import { userRouter } from './routes/UserRoutes';
 import { errorHandler } from '@quickbiteapp/shared';
+import { authRouter } from './routes/AuthRoutes';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
 
 app.use(errorHandler);
 
@@ -27,10 +29,9 @@ const start = async () => {
         return;
     }
 
-    console.log("Connected to Mongo Database");
-
     try {
         await connectDB(dbConnectionString);
+        console.log("Connected to Mongo Database");
         
         app.listen(port, () => {
             console.log(`Server is listening on port ${port}`);
