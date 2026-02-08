@@ -6,10 +6,8 @@ export const requireSuperAdmin = (
     res: Response,
     next: NextFunction
 ) => {
-    console.log(123);
-
     if (req.user?.role !== "SuperAdmin") {
-        throw new NotAuthorizedError();
+        return next(new NotAuthorizedError("Missing SuperAdmin role"));
     }
 
     next();

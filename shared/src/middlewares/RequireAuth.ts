@@ -29,7 +29,8 @@ export const requireAuth = (
         req.user = payload;
 
         next();
-    } catch {
-        next(new NotAuthenticatedError("Not authorized"));
+    } catch (err) {
+        console.log(err);
+        next(new NotAuthenticatedError());
     }
 };
