@@ -1,29 +1,37 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { NotAuthenticatedError } from "../errors/NotAuthenticatedError";
+import { SecretNotDefinedError } from "../errors/SecretNotDefinedError";
 import { UserPayload } from "../types/express";
+import { JWT_SECRET } from "../config";
 
-export const requireAuth = (jwtSecret: string) => {
+export const requireAuth = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const jwtKey = JWT_SECRET;
 
-    return (req: Request, res: Response, next: NextFunction) => {
-        const authHeader = req.headers.authorization;
+    if (!jwtKey) {
+        throw new SecretNotDefinedError();
+    }
 
-        if (!authHeader?.startsWith("Bearer ")) {
-        return next(new NotAuthenticatedError());
-        }
+    const authHeader = req.headers.authorization;
 
-        const token = authHeader.split(" ")[1];
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        throw new NotAuthenticatedError();
+    }
 
-        try {
-            const payload = jwt.verify(token, jwtSecret) as UserPayload;
+    const token = authHeader.split(" ")[1];
 
-            req.user = payload;
+    try {
+        const payload = jwt.verify(token, jwtKey) as UserPayload;
 
-            next();
-        } catch (err) {
-            console.log(err);
-            return next(new NotAuthenticatedError());
-        }
-    };
+        req.user = payload;
 
+        next();
+    } catch (err) {
+        console.log(err);
+        next(new NotAuthenticatedError());
+    }
 };
