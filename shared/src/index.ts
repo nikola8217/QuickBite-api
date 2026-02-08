@@ -11,4 +11,6 @@ export * from './errors/SecretNotDefinedError';
 
 export * from './middlewares/ErrorHandler';
 export * from './middlewares/ValidateRequest';
+export * from './middlewares/RequireAuth';
+export * from './middlewares/RequireSuperAdmin';
 
