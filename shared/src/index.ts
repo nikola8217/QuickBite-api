@@ -7,6 +7,7 @@ export * from './errors/RequestValidationError';
 export * from './errors/RequiredFieldError';
 export * from './errors/InvalidCredentialsError';
 export * from './errors/UserNotActiveError';
+export * from './errors/SecretNotDefinedError';
 
 export * from './middlewares/ErrorHandler';
 export * from './middlewares/ValidateRequest';
