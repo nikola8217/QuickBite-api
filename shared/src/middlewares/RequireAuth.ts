@@ -3,14 +3,13 @@ import jwt from "jsonwebtoken";
 import { NotAuthenticatedError } from "../errors/NotAuthenticatedError";
 import { SecretNotDefinedError } from "../errors/SecretNotDefinedError";
 import { UserPayload } from "../types/express";
-import { JWT_SECRET } from "../config";
 
 export const requireAuth = (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
-    const jwtKey = JWT_SECRET;
+    const jwtKey = process.env.JWT_SECRET;
 
     if (!jwtKey) {
         throw new SecretNotDefinedError();
