@@ -6,7 +6,7 @@ export const requireSuperAdmin = (
     res: Response,
     next: NextFunction
 ) => {
-    console.log(123, req.method, req.user);
+    console.log(123);
 
     if (req.user?.role !== "SuperAdmin") {
         throw new NotAuthorizedError();
